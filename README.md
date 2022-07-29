@@ -39,8 +39,7 @@
 **cors** --> cross origin resource sharing middleware
 
 **Route Specific middleware**
- ``
- app.get("/about", cors(), (req, res) => {} // single middleware
+ 
+> app.get("/about", cors(), (req, res) => {} // single middleware
     or,
-  app.get("/about", [cors(), cors()], (req, res)) => {} // array of middleware
-``
+ > app.get("/about", [cors(), cors()], (req, res)) => {} // array of middleware
