@@ -1,10 +1,10 @@
 const express = require("express");
-
 const cors = require("cors");
 const morgan = require("morgan");
-
 const app = express(); //router mainly a middleware
 
+
+app.use(express.static("./public"));
 app.use(express.json()); // for parsing application/json
 app.use(express.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 app.use(cors());
