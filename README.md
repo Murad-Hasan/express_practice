@@ -6,4 +6,4 @@
 
 }
 
-//Type of request we mainly used: GET, POST, PUT, DELETE, PATCH , HEAD, OPTIONS (we can use more)-----> HTTP method
+##Type of request we mainly used: GET, POST, PUT, DELETE, PATCH , HEAD, OPTIONS (we can use more)-----> HTTP method
