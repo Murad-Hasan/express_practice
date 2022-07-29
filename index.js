@@ -5,14 +5,16 @@ const cors = require("cors");
 const morgan = require("morgan");
 
 const app = express();
+const router = express.Router(); //router mainly a middleware
 
 app.use(express.json()); // for parsing application/json
 app.use(express.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 app.use(cors());
 app.use(morgan("dev"));
+app.use(globalMiddleware);
+app.use(router);
 
-
-app.get("/", (req, res) => {
+router.get("/", (req, res) => {
   fs.readFile("./pages/index.html", (err, data) => {
     if (err) {
       console.log("Error: ", err);
@@ -31,7 +33,15 @@ app.get("/", (req, res) => {
   app.get("/about", [cors(), cors()], (req, res)) => {} // array of middleware
 */
 
-app.get("/about", (req, res) => {
+// Global middleware create
+function globalMiddleware(req, res, next) {
+  console.log(`${req.method} - ${req.url}`);
+  console.log("Global Middleware");
+  if (req.query.bad) res.status(400).send("Something went wrong");
+  next();
+}
+
+router.get("/about", localMiddleware, (req, res) => {
   fs.readFile("./pages/about.html", (err, data) => {
     if (err) {
       console.log("Error: ", err);
@@ -43,11 +53,18 @@ app.get("/about", (req, res) => {
   });
 });
 
-app.get("/contact", (req, res) => {
+//Local middleware create for about page
+
+function localMiddleware(req, res, next) {
+  console.log("Local Middleware");
+  next();
+}
+
+router.get("/contact", (req, res) => {
   res.send(`<h1> I am Contact Route</h2>`);
 });
 
-app.get("/help", (req, res) => {
+router.get("/help", (req, res) => {
   res.send(`<h1> I am Help Route</h2>`);
 });
 

@@ -57,4 +57,16 @@ function(req, res, next) {
     //Process request
     //Response back to result
 }
+
+function middlewareSignature (req, res, next) {
+    console.log("middlewareSignature");
+    next();
+  }
 ```
+**router**
+* router mainly a middleware;
+  ```
+  const router = express.Route();
+  app.use(router);
+  ```
+
