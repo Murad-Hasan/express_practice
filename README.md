@@ -45,4 +45,15 @@ app.get("/about", cors(), (req, res) => {} // single middleware
 app.get("/about", [cors(), cors()], (req, res)) => {} // array of middleware
 
 ```
+### Middleware Signature
+                    **Controller vs Middleware**
+ > If everything seems ok controller will call response methods
+ > If everything seems ok middleware will call next() method
 
+```
+function(req, res, next) {
+    //Read request object
+    //Process request
+    //Response back to result
+}
+```
