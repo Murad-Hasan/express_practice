@@ -21,3 +21,16 @@
   - modify request object (add new property, change property, delete property)
   - response back to client from any where in the middleware
   - data filtering, data validation, data sanitization, authentication etc.
+
+
+**Middleware Responsibility**
+  - handle common tasks
+  - request logs
+  - filter request
+  - modify or reshape request
+  - validate request body
+  - authenticate or authorize request
+  - add additional details to request body
+  - response bad request
+  - pass request to next middleware or response handler
+
