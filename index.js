@@ -24,6 +24,13 @@ app.get("/", (req, res) => {
   });
 });
 
+/*
+  Route Specific middleware
+  app.get("/about", cors(), (req, res) => {} // single middleware
+    or,
+  app.get("/about", [cors(), cors()], (req, res)) => {} // array of middleware
+*/
+
 app.get("/about", (req, res) => {
   fs.readFile("./pages/about.html", (err, data) => {
     if (err) {
