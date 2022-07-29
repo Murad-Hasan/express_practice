@@ -34,3 +34,7 @@
   - response bad request
   - pass request to next middleware or response handler
 
+**Morgan** --> logger middleware
+
+**cors** --> cross origin resource sharing middleware
+
