@@ -15,3 +15,9 @@
   - response
   - middleware
   - router
+
+**Middleware Can Do Something Before Request:**
+  --->> middleware one kind of handler <<---
+  - modify request object (add new property, change property, delete property)
+  - response back to client from any where in the middleware
+  - data filtering, data validation, data sanitization, authentication etc.
