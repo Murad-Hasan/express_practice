@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Create new poll</title>
+  </head>
+  <body>
+    <div class="container mx-auto border border-2 p-2 mt-4 rounded">
+      <h1 class="text-3xl font-bold text-center">Create new poll</h1>
+      <form action="/create" method="POST">
+        <div class="mb-4">
+          <label for="title" class="block text-gray-700 text-sm font-bold mb-2"
+            >Title</label
+          >
+          <input
+            type="text"
+            name="title"
+            id="title"
+            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          />
+        </div>
+        <div>
+          <label
+            for="description"
+            class="block text-gray-700 text-sm font-bold mb-2"
+            >Description</label
+          >
+          <textarea
+            name="description"
+            id="description"
+            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          ></textarea>
+        </div>
+        <div class="mb-4" id="options">
+          <label
+            for="options"
+            class="block text-gray-700 text-sm font-bold mb-2"
+            >Enter Your Options</label
+          >
+          <div>
+            <input
+              type="text"
+              name="options"
+              id="options"
+              placeholder="Option 1"
+              class="shadow appearance-none mb-4 border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            />
+          </div>
+          <div>
+            <input
+              type="text"
+              name="options"
+              id="options"
+              placeholder="Option 2"
+              class="shadow appearance-none mb-4 border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            />
+          </div>
+        </div>
+        <button
+          id="addOption"
+          class="bg-gray-500 hover:bg-gray-700 text-white text-sm py-1 px-2 rounded focus:outline-none focus:shadow-outline"
+        >
+          <span>Add more Option</span>
+        </button>
+        <br />
+        <br />
+        <button
+          id="createPoll"
+          type="submit"
+          class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+        >
+          Create
+        </button>
+      </form>
+    </div>
+    <script>
+      let options = document.getElementById('options');
+      let addOption = document.getElementById('addOption');
+      let currentOptionNumber = 3;
+      function createNewOption(optionNumber) {
+        let newOption = document.createElement('div');
+        newOption.innerHTML = `
+          <input
+            type="text"
+            name="options"
+            id="options"
+            placeholder="Option ${optionNumber}"
+            class="shadow appearance-none mb-4 border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          />
+        `;
+        return newOption;
+      }
+      addOption.addEventListener('click', (e) => {
+        e.preventDefault();
+        let newOption = createNewOption(currentOptionNumber);
+        options.appendChild(newOption);
+        currentOptionNumber++;
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Put Your Opinion</title>
+  </head>
+  <body>
+    <div class="container mx-auto my-4">
+      <div>
+        <h5>Title: <%= poll.title %></h5>
+        <p>Description: <%= poll.description %></p>
+        <div class="my-3" id="resultSection"></div>
+        <div class="my-4">
+          <h5>What is your Opinion</h5>
+          <form action="/poll/<%= poll._id %>" method="post">
+            <% for ( let option of poll.options ) { %>
+            <div class="my-2">
+              <input
+                type="radio"
+                name="option"
+                value="<%= option._id %>"
+                id="<%= option._id %>"
+              />
+              <label for="<%= option._id %>"><%= option.name %></label>
+            </div>
+            <% } %>
+            <br />
+            <button type="submit" id="submitBtn" value="submit your opinion">
+              Submit
+            </button>
+            <div id="pollSection"></div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <script>
+      const submitBtn = document.getElementById('submitBtn');
+
+      const showResult = () => {
+        const resultDiv = document.getElementById('resultSection');
+        resultDiv.innerHTML = ` <strong>Result :</strong>
+          <span>( totalVote:<%= poll.totalVote %> )</span>
+          <ul>
+            <% for ( let option of result ) { %>
+            <li>
+              <p>
+                <%= option.name %> --------->
+                <strong><%= option.percentage %> %</strong>
+                <span>(<%= option.vote %>)</span>
+              </p>
+            </li>
+            <% } %>
+          </ul>`;
+
+        submitBtn.style.display = 'none';
+        alert('Thanks for your opinion');
+        const pollSection = document.getElementById('pollSection');
+        pollSection.innerHTML = `<br/> <Button>
+          <a href="/polls">Back to Polls Section</a>
+          </Button>`;
+      };
+
+      submitBtn.addEventListener('click', (e) => {
+        showResult();
+        e.preventDefault();
+      });
+    </script>
+  </body>
+</html>

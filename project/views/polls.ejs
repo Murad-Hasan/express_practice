@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>polls</title>
+  </head>
+  <body>
+    <div class="container mx-auto my-4">
+      <h1 class="text-3xl font-bold">Your All Polls</h1>
+      <div class="mt-4">
+        <ul class="">
+          <% polls.forEach((poll) => { %>
+          <li class="">
+            <a href="/poll/<%= poll._id %>" class=""><%= poll.title %></a>
+          </li>
+          <% }) %>
+        </ul>
+      </div>
+    </div>
+  </body>
+</html>
